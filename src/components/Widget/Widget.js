@@ -1,6 +1,7 @@
 import React from "react";
 import NavComponent from "../NavComponent";
 import Search from "../Search";
+import Chart from "../Chart";
 
 const Widget = props => {
   return (
@@ -10,8 +11,8 @@ const Widget = props => {
       </div>
       <NavComponent />
       <div>
-      <Search />
-    
+        <Search />
+        <Chart />
       </div>
     </div>
   );

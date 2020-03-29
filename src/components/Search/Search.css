@@ -1,15 +1,11 @@
-.search-group{
-display: flex;
+.search-group {
+  display: flex;
 }
 
-.search-options{
-    display: flex;
-
-    justify-content: space-around;
-    margin: auto;
-    }
-
-.search-options-unit{
-    flex-grow: 1;
-    width: 100px;
+.search-options {
+  display: flex;
+  min-width: 180px;
+  justify-content: space-around;
+  margin: auto;
 }
+
