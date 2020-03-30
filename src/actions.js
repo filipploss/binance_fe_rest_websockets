@@ -8,9 +8,16 @@ const changeVolumeSelect = payload => ({
   type: "CHANGE_VOLUME_SELECT",
   payload
 });
+
+const favButtonSelect = payload => ({
+  type: "FAV_BUTTON_SELECT",
+  payload
+});
+
 export {
   btcStoreUpdate,
   assetStoreUpdate,
   storeUpdateWebsocket,
-  changeVolumeSelect
+  changeVolumeSelect,
+  favButtonSelect
 };

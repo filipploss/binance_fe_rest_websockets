@@ -30,6 +30,13 @@ const reducer = (state = initialState, action) => {
         changeOrVolume: action.payload
       };
 
+      case "FAV_BUTTON_SELECT":
+        return {
+          ...state,
+          favorites: action.payload
+        };
+      
+
     default:
       return state;
   }

@@ -2,10 +2,13 @@ import React, { Component } from "react";
 import { Table } from "reactstrap";
 import { connect } from "react-redux";
 
+import { dispatch } from "../../index";
+import { favButtonSelect } from "../../actions";
 import "./Chart.css";
 
 class Chart extends Component {
   render() {
+    console.log("favorites", this.props.favorites);
     return (
       <div className="container">
         <Table size="sm" hover>
@@ -23,13 +26,73 @@ class Chart extends Component {
           </thead>
 
           {this.props.data.map((item, index) => {
+            let favArray = this.props.favorites;
             return (
               <tbody key={index}>
                 <tr>
                   {/* <th scope="row">★</th> */}
                   {/* <td>★</td> */}
                   <td>
-                  ★ {item.b}/{item.q}
+                    {favArray.find(i => i.s === item.s) ? (
+                      <button
+                        className="fav-button-checked"
+                        onClick={() => {
+                          let favArray = this.props.favorites;
+                          if (!favArray.find(i => i.s === item.s)) {
+                            favArray.push(item);
+                            console.log("!!!");
+                            dispatch(favButtonSelect(favArray));
+                          } else {
+                            let favArray = this.props.favorites;
+                            console.log(item);
+
+                            favArray.forEach((i, index) => {
+                              // console.log('i', i)
+                              // console.log('item', item)
+                              // console.log(i.s === item.s)
+                              if (i.s === item.s) {
+                                favArray.splice(index, 1);
+                                // console.log("favIndex", index);
+                                return;
+                              }
+                            });
+                            dispatch(favButtonSelect(favArray));
+                          }
+                        }}
+                      >
+                        ★
+                      </button>
+                    ) : (
+                      <button
+                        className="fav-button"
+                        onClick={() => {
+                          let favArray = this.props.favorites;
+                          if (!favArray.find(i => i.s === item.s)) {
+                            favArray.push(item);
+                            console.log("!!!");
+                            dispatch(favButtonSelect(favArray));
+                          } else {
+                            let favArray = this.props.favorites;
+                            console.log(item);
+
+                            favArray.forEach((i, index) => {
+                              // console.log('i', i)
+                              // console.log('item', item)
+                              // console.log(i.s === item.s)
+                              if (i.s === item.s) {
+                                favArray.splice(index, 1);
+                                // console.log("favIndex", index);
+                                return;
+                              }
+                            });
+                            dispatch(favButtonSelect(favArray));
+                          }
+                        }}
+                      >
+                        ★
+                      </button>
+                    )}
+                    {item.b}/{item.q}
                   </td>
                   <td>{item.c}</td>
 
@@ -40,7 +103,7 @@ class Chart extends Component {
                       </td>
                     ) : (
                       <td className="positive">
-                        {((item.c / item.o) * 100 - 100).toFixed(2)}%
+                        +{((item.c / item.o) * 100 - 100).toFixed(2)}%
                       </td>
                     )
                   ) : (
@@ -56,10 +119,11 @@ class Chart extends Component {
   }
 }
 
-const mapStateToProps = ({ data, changeOrVolume }) => {
+const mapStateToProps = ({ data, changeOrVolume, favorites }) => {
   return {
     data,
-    changeOrVolume
+    changeOrVolume,
+    favorites
   };
 };
 

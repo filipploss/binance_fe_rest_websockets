@@ -14,8 +14,9 @@ export default function Search() {
         </InputGroup>
         <div className="search-options">
           <FormGroup check>
-            <Label check>
+            <Label check >
               <Input
+                className="radio-button"
                 type="radio"
                 name="radio2"
                 defaultChecked

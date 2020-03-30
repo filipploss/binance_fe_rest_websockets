@@ -19,26 +19,27 @@ class Main extends Component {
       const json = await response.json();
        
       const result = await json.data.filter(item => item.pm === "BTC");
-      console.log("!all data", json.data);
-      console.log("!result", result);
+    //   console.log("!all data", json.data);
+    //   console.log("!result", result);
       dispatch(btcStoreUpdate(result));
     } catch (error) {
       console.log(error);
     }
 
+         console.log("! Props", this.props.data);
     this.socket.onopen = e => {
-      console.log("[open] Websocket connection open");
+    //   console.log("[open] Websocket connection open");
       this.socket.onmessage = event => {
         let result = JSON.parse(event.data);
-        console.log("JSON", result);
-        console.log(result.data);
-        console.log("! Props", this.props.data);
-        console.log("! result", result.data);
+        // console.log("JSON", result);
+        // console.log(result.data);
+        // console.log("! Props", this.props.data);
+        // console.log("! result", result.data);
 
         let updatedData = this.props.data.map(item => {
           for (let index = 0; index < result.data.length; index++) {
             if (item.s === result.data[index].s) {
-              console.log(item.s, "!Updated");
+            //   console.log(item.s, "!Updated");
               if (item.c < 1) {
                 item = {
                   ...item,
@@ -63,12 +64,13 @@ class Main extends Component {
           }
           return item;
         });
-        console.log("updated data: ", updatedData);
+        // console.log("updated data: ", updatedData);
         dispatch(storeUpdateWebsocket(updatedData));
       };
     };
   };
   render() {
+      
     return <></>;
   }
 }

@@ -11,6 +11,29 @@
   color: green;
 }
 
+.fav-button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  opacity: 0.5;
+}
+
+.fav-button-checked {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  color: rgb(240, 185, 11);
+  opacity: 1;
+}
+
+.fav-button-checked:focus {
+  outline: none;
+}
+
+.fav-button:focus {
+  outline: none;
+}
+
 /* .chart {
   text-align: right;
 } */
