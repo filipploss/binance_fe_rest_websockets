@@ -8,7 +8,8 @@ import "./Chart.css";
 
 class Chart extends Component {
   render() {
-    console.log("favorites", this.props.favorites);
+    // console.log("favorites", this.props.favorites);
+    // console.log('chart props', this.props)
     return (
       <div className="container">
         <Table size="sm" hover>
@@ -27,71 +28,44 @@ class Chart extends Component {
 
           {this.props.data.map((item, index) => {
             let favArray = this.props.favorites;
+            let favStyle;
+            favArray.find(i => i.s === item.s)
+              ? (favStyle = "fav-button-checked")
+              : (favStyle = "fav-button");
             return (
               <tbody key={index}>
                 <tr>
                   {/* <th scope="row">★</th> */}
                   {/* <td>★</td> */}
                   <td>
-                    {favArray.find(i => i.s === item.s) ? (
-                      <button
-                        className="fav-button-checked"
-                        onClick={() => {
-                          let favArray = this.props.favorites;
-                          if (!favArray.find(i => i.s === item.s)) {
-                            favArray.push(item);
-                            console.log("!!!");
-                            dispatch(favButtonSelect(favArray));
-                          } else {
-                            let favArray = this.props.favorites;
-                            console.log(item);
+                    {/* {favArray.find(i => i.s === item.s) ? ( */}
+                    <button
+                      className={favStyle}
+                      onClick={() => {
+                        if (!favArray.find(i => i.s === item.s)) {
+                          favArray.push(item);
+                          // console.log("!!!");
+                          dispatch(favButtonSelect(favArray));
+                        } else {
+                          // let favArray = this.props.favorites;
+                          // console.log(item);
 
-                            favArray.forEach((i, index) => {
-                              // console.log('i', i)
-                              // console.log('item', item)
-                              // console.log(i.s === item.s)
-                              if (i.s === item.s) {
-                                favArray.splice(index, 1);
-                                // console.log("favIndex", index);
-                                return;
-                              }
-                            });
-                            dispatch(favButtonSelect(favArray));
-                          }
-                        }}
-                      >
-                        ★
-                      </button>
-                    ) : (
-                      <button
-                        className="fav-button"
-                        onClick={() => {
-                          let favArray = this.props.favorites;
-                          if (!favArray.find(i => i.s === item.s)) {
-                            favArray.push(item);
-                            console.log("!!!");
-                            dispatch(favButtonSelect(favArray));
-                          } else {
-                            let favArray = this.props.favorites;
-                            console.log(item);
-
-                            favArray.forEach((i, index) => {
-                              // console.log('i', i)
-                              // console.log('item', item)
-                              // console.log(i.s === item.s)
-                              if (i.s === item.s) {
-                                favArray.splice(index, 1);
-                                // console.log("favIndex", index);
-                                return;
-                              }
-                            });
-                            dispatch(favButtonSelect(favArray));
-                          }
-                        }}
-                      >
-                        ★
-                      </button>
-                    )}
+                          favArray.forEach((i, index) => {
+                            // console.log('i', i)
+                            // console.log('item', item)
+                            // console.log(i.s === item.s)
+                            if (i.s === item.s) {
+                              favArray.splice(index, 1);
+                              // console.log("favIndex", index);
+                              return;
+                            }
+                          });
+                          dispatch(favButtonSelect(favArray));
+                        }
+                      }}
+                    >
+                      ★
+                    </button>
                     {item.b}/{item.q}
                   </td>
                   <td>{item.c}</td>

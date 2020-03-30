@@ -12,6 +12,7 @@ import {
   DropdownItem
 } from "reactstrap";
 
+import { connect } from "react-redux";
 import { dispatch } from "../../index";
 import { assetStoreUpdate } from "../../actions";
 
@@ -29,10 +30,28 @@ const NavComponent = props => {
       let result;
       if (asset === "BTC" || asset === "BNB") {
         result = await json.data.filter(item => item.pm === asset);
+      } else if (asset === "FAV") {
+        // console.log("!");
+        // console.log("nav props", props);
+        // console.log("nav json.data", json.data);
+        let res = [];
+        // console.log(
+        //   "result",
+          props.favorites.forEach(item => {
+            for (let index = 0; index < json.data.length; index++) {
+              if (item.s === json.data[index].s) {
+                res.push(json.data[index]);
+              }
+            }
+            return res;
+          })
+        // );
+        result = res;
+        console.log("res", result);
       } else {
         result = await json.data.filter(item => item.q === asset);
       }
-      console.log("!result", result);
+      // console.log("!result", result);
       dispatch(assetStoreUpdate(result));
     } catch (error) {
       console.log(error);
@@ -47,7 +66,9 @@ const NavComponent = props => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink href="#">★</NavLink>
+              <NavLink href="#" onClick={() => assetFilter("FAV")}>
+                ★
+              </NavLink>
             </NavItem>
             {/* Margin is not found in the API */}
             <NavItem>
@@ -104,4 +125,10 @@ const NavComponent = props => {
   );
 };
 
-export default NavComponent;
+const mapStateToProps = ({ favorites }) => {
+  return {
+    favorites
+  };
+};
+
+export default connect(mapStateToProps)(NavComponent);

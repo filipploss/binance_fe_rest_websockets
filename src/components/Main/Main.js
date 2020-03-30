@@ -17,7 +17,6 @@ class Main extends Component {
         throw Error(response.statusText);
       }
       const json = await response.json();
-       
       const result = await json.data.filter(item => item.pm === "BTC");
     //   console.log("!all data", json.data);
     //   console.log("!result", result);
