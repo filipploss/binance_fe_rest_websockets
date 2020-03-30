@@ -14,10 +14,22 @@ const favButtonSelect = payload => ({
   payload
 });
 
+const searchInput = payload => ({
+  type: "SEARCH_INPUT",
+  payload
+});
+
+const searchDataInit = payload => ({
+  type: "SEARCH_DATA_INIT",
+  payload
+});
+
 export {
   btcStoreUpdate,
   assetStoreUpdate,
   storeUpdateWebsocket,
   changeVolumeSelect,
-  favButtonSelect
+  favButtonSelect,
+  searchInput,
+  searchDataInit
 };

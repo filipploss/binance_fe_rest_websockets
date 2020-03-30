@@ -2,7 +2,8 @@ const initialState = {
   message: "",
   data: [],
   favorites: [],
-  changeOrVolume: 'change'
+  changeOrVolume: "change",
+  searchData: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -10,7 +11,8 @@ const reducer = (state = initialState, action) => {
     case "BTC_STORE_UPDATE":
       return {
         ...state,
-        data: action.payload
+        data: action.payload,
+        
       };
 
     case "ASSET_STORE_UPDATE":
@@ -24,18 +26,29 @@ const reducer = (state = initialState, action) => {
         ...state,
         data: action.payload
       };
-      case "CHANGE_VOLUME_SELECT":
+    case "CHANGE_VOLUME_SELECT":
       return {
         ...state,
         changeOrVolume: action.payload
       };
 
-      case "FAV_BUTTON_SELECT":
+    case "FAV_BUTTON_SELECT":
+      return {
+        ...state,
+        favorites: action.payload
+      };
+
+    case "SEARCH_INPUT":
+      return {
+        ...state,
+        data: action.payload
+      };
+
+      case "SEARCH_DATA_INIT":
         return {
           ...state,
-          favorites: action.payload
+          searchData: action.payload
         };
-      
 
     default:
       return state;

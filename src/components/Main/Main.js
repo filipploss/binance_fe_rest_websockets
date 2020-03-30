@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { btcStoreUpdate, storeUpdateWebsocket } from "../../actions";
+import { btcStoreUpdate, storeUpdateWebsocket, searchDataInit } from "../../actions";
 import { dispatch } from "../../index";
 
 class Main extends Component {
@@ -10,7 +10,6 @@ class Main extends Component {
   );
 
   componentDidMount = async () => {
-    //
     try {
       const response = await fetch(`http://localhost:3001/`);
       if (!response.ok) {
@@ -21,6 +20,7 @@ class Main extends Component {
     //   console.log("!all data", json.data);
     //   console.log("!result", result);
       dispatch(btcStoreUpdate(result));
+      dispatch(searchDataInit(json.data))
     } catch (error) {
       console.log(error);
     }
@@ -74,9 +74,9 @@ class Main extends Component {
   }
 }
 
-const mapStateToProps = ({ data }) => {
+const mapStateToProps = ({ data, searchData }) => {
   return {
-    data
+    data, searchData
   };
 };
 
