@@ -92,19 +92,27 @@ class Main extends Component {
   render() {
     return (
       <>
-        {/* <Widget startWebsocket={this.startWebsocket} /> */}
         {this.props.children}
-        <Button
-          className="button"
-          color="secondary"
-          size="sm"
-          onClick={this.startWebsocket}
-        >
-          Close Websocket
-        </Button>
-        {this.state.websocketOpen
-          ? "WebSocket connection open"
-          : "WebSocket connection closed"}
+        {this.state.websocketOpen ? (
+          <div>
+            <Button
+              className="button"
+              color="secondary"
+              size="sm"
+              onClick={this.startWebsocket}
+            >
+              Close Websocket
+            </Button>
+            WebSocket connection open
+          </div>
+        ) : (
+          <div>
+            <Button className="button" color="secondary" disabled size="sm">
+              Close Websocket
+            </Button>
+            WebSocket connection closed
+          </div>
+        )}
       </>
     );
   }
