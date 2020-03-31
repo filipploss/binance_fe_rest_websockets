@@ -15,6 +15,7 @@ import {
 import { connect } from "react-redux";
 import { dispatch } from "../../index";
 import { assetStoreUpdate } from "../../actions";
+import './NavComponent.css'
 
 const NavComponent = props => {
   const [isOpen, setIsOpen] = useState(false);
@@ -60,11 +61,11 @@ const NavComponent = props => {
 
   return (
     <div>
-      <Navbar color="light" light expand="md">
+      <Navbar light expand="md">
         {/* <NavbarBrand href="/">reactstrap</NavbarBrand> */}
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
+          <Nav className="mr-auto navbar" navbar>
             <NavItem>
               <NavLink href="#" onClick={() => assetFilter("FAV")}>
                 ★
@@ -72,15 +73,15 @@ const NavComponent = props => {
             </NavItem>
             {/* Margin is not found in the API */}
             <NavItem>
-              <NavLink href="#">Margin</NavLink>
+              <NavLink href="#" className='nav-link'>Margin</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="#" onClick={() => assetFilter("BNB")}>
+              <NavLink href="#" className='nav-link' onClick={() => assetFilter("BNB")}>
                 BNB
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="#" onClick={() => assetFilter("BTC")}>
+              <NavLink href="#" className='nav-link' onClick={() => assetFilter("BTC")}>
                 BTC
               </NavLink>
             </NavItem>
@@ -90,30 +91,30 @@ const NavComponent = props => {
                 ALTS
               </DropdownToggle>
               <DropdownMenu right>
-                <DropdownItem onClick={() => assetFilter("XRP")}>
+                <DropdownItem className='nav-link' onClick={() => assetFilter("XRP")}>
                   XRP
                 </DropdownItem>
-                <DropdownItem onClick={() => assetFilter("ETH")}>
+                <DropdownItem className='nav-link' onClick={() => assetFilter("ETH")}>
                   ETH
                 </DropdownItem>
-                <DropdownItem onClick={() => assetFilter("TRX")}>
+                <DropdownItem className='nav-link' onClick={() => assetFilter("TRX")}>
                   TRX
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
             <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
-                USD$
+              <DropdownToggle nav caret className='nav-link'>
+              USDⓈ
               </DropdownToggle>
               {/* PN (category of parent market) doesn't contain category of USD stable coins, that's why it's hardcored in the dropdown */}
               <DropdownMenu right>
-                <DropdownItem onClick={() => assetFilter("BUSD")}>
+                <DropdownItem className='nav-link' onClick={() => assetFilter("BUSD")}>
                   BUSD
                 </DropdownItem>
-                <DropdownItem onClick={() => assetFilter("USDT")}>
+                <DropdownItem className='nav-link' onClick={() => assetFilter("USDT")}>
                   USDT
                 </DropdownItem>
-                <DropdownItem onClick={() => assetFilter("USDC")}>
+                <DropdownItem className='nav-link' onClick={() => assetFilter("USDC")}>
                   USDC
                 </DropdownItem>
               </DropdownMenu>

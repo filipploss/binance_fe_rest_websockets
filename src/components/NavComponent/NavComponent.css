@@ -1,0 +1,19 @@
+.navbar {
+  padding: 0;
+  font-size: 15px;
+}
+
+.mr-auto {
+  margin: 0;
+}
+
+.nav-link:focus{
+  background-color: rgba(247, 247, 247, 0.952);
+  border-radius: 6px;
+}
+
+.nav-link:active {
+  border-style: none;
+  border: 0px;
+  outline: none;
+}

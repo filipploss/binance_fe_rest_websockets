@@ -1,0 +1,14 @@
+.sort-container {
+    display: flex;
+    flex-direction: column;
+    font-size: 8px;
+    margin-left: 3px;
+    opacity: 0.5;
+    /* z-index: -1;
+    position: relative; */
+}
+
+.up {
+    margin-bottom: -4px;
+}
+

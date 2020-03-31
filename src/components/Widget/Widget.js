@@ -2,12 +2,13 @@ import React from "react";
 import NavComponent from "../NavComponent";
 import Search from "../Search";
 import Chart from "../Chart";
+import './Widget.css'
 
 const Widget = props => {
   return (
     <div>
       <div>
-        <b>Market</b>
+        <h1>Market</h1>
       </div>
       <NavComponent />
       <div>

@@ -9,7 +9,18 @@
   margin: auto;
 }
 
-/* .radio-button {
-  background-color: darkorange !important;
-} */
+.input {
+  background-image: url(../../images/search.png);
+  background-repeat: no-repeat;
+  background-size: 14px;
+  background-position-y: center;
+  background-position-x: 5px;
+  text-indent: 20px;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid lightgray;
+  font-family: BinancePlex,Arial,PingFangSC-Regular,'Microsoft YaHei',sans-serif!important;
+  font-size: 14px;
+  
+}
 

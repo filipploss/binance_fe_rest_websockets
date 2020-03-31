@@ -5,16 +5,9 @@ import "./Search.css";
 import { connect } from "react-redux";
 import { dispatch } from "../../index";
 import { changeVolumeSelect, searchInput } from "../../actions";
+import SearchLogo from '../../images/search.png'
 
 class Search extends Component {
-  // searchData;
-  // shouldComponentUpdate() {
-  //   return false;
-  // }
-componentDidMount(){
-  // this.searchData = this.props.data;
-  // console.log(this.searchData)
-}
   render() {
     console.log('searchData', this.props.searchData)
   return (
@@ -23,11 +16,11 @@ componentDidMount(){
         <InputGroup onChange={event => {
           console.log(event.target.value)
           console.log('props', this.props)
-          const result = this.props.searchData.filter(item => item.s.includes(event.target.value.toUpperCase()));
+          const result = this.props.searchData.filter(item => item.s.includes(event.target.value.toUpperCase().replace('/', '')));
           console.log('result', result)
           dispatch(searchInput(result))
           }}>
-          <Input placeholder="🔍 Search" />
+          <Input className='input' placeholder="Search" />
         </InputGroup>
         <div className="search-options">
           <FormGroup check>

@@ -12,16 +12,16 @@ class Chart extends Component {
     // console.log('chart props', this.props)
     return (
       <div className="container">
-        <Table size="sm" hover>
+        <Table size="sm" hover borderless>
           <thead>
             <tr>
               {/* <th>     </th> */}
               <th>Pair</th>
               <th>Last Price</th>
               {this.props.changeOrVolume === "change" ? (
-                <th>Change</th>
+                <th className='third-column'>Change</th>
               ) : (
-                <th>Volume</th>
+                <th lassName='third-column'>Volume</th>
               )}
             </tr>
           </thead>
@@ -72,11 +72,11 @@ class Chart extends Component {
 
                   {this.props.changeOrVolume === "change" ? (
                     ((item.c / item.o) * 100 - 100).toFixed(2) < 0 ? (
-                      <td className="negative">
+                      <td className="negative third-column">
                         {((item.c / item.o) * 100 - 100).toFixed(2)}%
                       </td>
                     ) : (
-                      <td className="positive">
+                      <td className="positive third-column">
                         +{((item.c / item.o) * 100 - 100).toFixed(2)}%
                       </td>
                     )
