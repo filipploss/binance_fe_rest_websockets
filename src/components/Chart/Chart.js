@@ -13,7 +13,6 @@ class Chart extends Component {
         <Table size="sm" hover borderless>
           <thead>
             <tr>
-              {/* <th>     </th> */}
               <th>Pair</th>
               <th>Last Price</th>
               {this.props.changeOrVolume === "change" ? (
@@ -33,28 +32,17 @@ class Chart extends Component {
             return (
               <tbody key={index}>
                 <tr>
-                  {/* <th scope="row">★</th> */}
-                  {/* <td>★</td> */}
                   <td>
-                    {/* {favArray.find(i => i.s === item.s) ? ( */}
                     <button
                       className={favStyle}
                       onClick={() => {
                         if (!favArray.find(i => i.s === item.s)) {
                           favArray.push(item);
-                          // console.log("!!!");
                           dispatch(favButtonSelect(favArray));
                         } else {
-                          // let favArray = this.props.favorites;
-                          // console.log(item);
-
                           favArray.forEach((i, index) => {
-                            // console.log('i', i)
-                            // console.log('item', item)
-                            // console.log(i.s === item.s)
                             if (i.s === item.s) {
                               favArray.splice(index, 1);
-                              // console.log("favIndex", index);
                               return;
                             }
                           });

@@ -59,7 +59,6 @@ class Main extends Component {
                   v: Number(result.data[index].v).toFixed(2)
                 };
               }
-              // TODO: отображение разных дробей
             }
           }
           return item;

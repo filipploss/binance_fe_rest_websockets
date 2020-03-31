@@ -7,7 +7,7 @@
   margin: 0;
 }
 
-.nav-link:focus{
+.nav-link:focus {
   background-color: rgba(247, 247, 247, 0.952);
   border-radius: 6px;
 }

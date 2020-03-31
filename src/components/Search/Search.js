@@ -8,20 +8,16 @@ import { changeVolumeSelect, searchInput } from "../../actions";
 
 class Search extends Component {
   render() {
-    // console.log('searchData', this.props.searchData)
     return (
       <div>
         <div className="search-group">
           <InputGroup
             onChange={event => {
-              console.log(event.target.value);
-              console.log("props", this.props);
               const result = this.props.searchData.filter(item =>
                 item.s.includes(
                   event.target.value.toUpperCase().replace("/", "")
                 )
               );
-              console.log("result", result);
               dispatch(searchInput(result));
             }}
           >

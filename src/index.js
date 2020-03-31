@@ -7,17 +7,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./index.css";
 import App from "./App";
-import reducer from './reducer'
+import reducer from "./reducer";
 
 export const store = createStore(reducer);
 export const { dispatch } = store;
 
 ReactDOM.render(
-  <React.StrictMode>
-     <Provider store={store}>
+  <Provider store={store}>
     <App />
-    </Provider>
-  </React.StrictMode>,
+  </Provider>,
 
   document.getElementById("root")
 );
