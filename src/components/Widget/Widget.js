@@ -20,7 +20,7 @@ const Widget = props => {
         <Chart />
       </div>
       {/* {console.log(props)} */}
-    <button onClick={props.startWebsocket}>Close Websocket</button>
+    {/* <button onClick={props.startWebsocket}>Close Websocket</button> */}
     </div>
   );
 };

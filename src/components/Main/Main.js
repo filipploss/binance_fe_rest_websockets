@@ -1,16 +1,27 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Button } from "reactstrap";
 
 import { storeInit, storeUpdateWebsocket, searchDataInit } from "../../actions";
 import { dispatch } from "../../index";
-import Widget from "../Widget";
+import "./Main.css";
 
 class Main extends Component {
+  state = {
+    websocketOpen: false
+  };
+
   startWebsocket = () => {
     if (this.socket) {
       this.socket.close(1000, "Button clicked");
       this.socket.onclose = event => {
-        console.log("[close] Websocket connection closed");
+        this.setState(function(state, props) {
+          return {
+            websocketOpen: false
+          };
+        });
+        // this.setState = { websocketOpen: false };
+        console.log("[close] Websocket connection close");
       };
     }
 
@@ -19,6 +30,11 @@ class Main extends Component {
     );
 
     this.socket.onopen = e => {
+      this.setState(function(state, props) {
+        return {
+          websocketOpen: true
+        };
+      });
       console.log("[open] Websocket connection open");
       this.socket.onmessage = event => {
         let result = JSON.parse(event.data);
@@ -71,14 +87,24 @@ class Main extends Component {
     }
 
     this.startWebsocket();
-   
   };
-  
+
   render() {
     return (
       <>
-        <Widget startWebsocket={this.startWebsocket} />
-        {/* <button onClick={this.closeWebsocket}>Websocket close</button> */}
+        {/* <Widget startWebsocket={this.startWebsocket} /> */}
+        {this.props.children}
+        <Button
+          className="button"
+          color="secondary"
+          size="sm"
+          onClick={this.startWebsocket}
+        >
+          Close Websocket
+        </Button>
+        {this.state.websocketOpen
+          ? "WebSocket connection open"
+          : "WebSocket connection closed"}
       </>
     );
   }
