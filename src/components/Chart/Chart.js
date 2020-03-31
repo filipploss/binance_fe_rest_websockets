@@ -17,9 +17,9 @@ class Chart extends Component {
               <th>Pair</th>
               <th>Last Price</th>
               {this.props.changeOrVolume === "change" ? (
-                <th className='third-column'>Change</th>
+                <th className="third-column">Change</th>
               ) : (
-                <th className='third-column'>Volume</th>
+                <th className="third-column">Volume</th>
               )}
             </tr>
           </thead>
@@ -66,8 +66,17 @@ class Chart extends Component {
                     </button>
                     {item.b}/{item.q}
                   </td>
-                  {/* {console.log(item.c, item.c.toPrecision())} */}
-                  <td>{item.c}</td>
+                  {Number(item.c) > 9 && Number(item.c) < 99.99 ? (
+                    <td>{Number(item.c).toFixed(6)}</td>
+                  ) : Number(item.c) > 99.99 && Number(item.c) < 999.99 ? (
+                    <td>{Number(item.c).toFixed(5)}</td>
+                  ) : Number(item.c) > 999.99 && Number(item.c) < 9999.99 ? (
+                    <td>{Number(item.c).toFixed(4)}</td>
+                  ) : Number(item.c) > 9999.99 && Number(item.c) < 99999.99 ? (
+                    <td>{Number(item.c).toFixed(3)}</td>
+                  ) : (
+                    <td>{Number(item.c).toFixed(7)}</td>
+                  )}
 
                   {this.props.changeOrVolume === "change" ? (
                     ((item.c / item.o) * 100 - 100).toFixed(2) < 0 ? (

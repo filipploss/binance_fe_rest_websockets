@@ -2,13 +2,9 @@ import React from "react";
 import NavComponent from "../NavComponent";
 import Search from "../Search";
 import Chart from "../Chart";
-import Main from '../Main'
-import './Widget.css'
-
-
+import "./Widget.css";
 
 const Widget = props => {
-  
   return (
     <div>
       <div>
@@ -19,8 +15,6 @@ const Widget = props => {
         <Search />
         <Chart />
       </div>
-      {/* {console.log(props)} */}
-    {/* <button onClick={props.startWebsocket}>Close Websocket</button> */}
     </div>
   );
 };

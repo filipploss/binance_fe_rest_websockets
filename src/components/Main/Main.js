@@ -20,7 +20,6 @@ class Main extends Component {
             websocketOpen: false
           };
         });
-        // this.setState = { websocketOpen: false };
         console.log("[close] Websocket connection close");
       };
     }
@@ -78,8 +77,6 @@ class Main extends Component {
       }
       const json = await response.json();
       const result = await json.data.filter(item => item.pm === "BTC");
-      //   console.log("!all data", json.data);
-      //   console.log("!result", result);
       dispatch(storeInit(result));
       dispatch(searchDataInit(json.data));
     } catch (error) {
