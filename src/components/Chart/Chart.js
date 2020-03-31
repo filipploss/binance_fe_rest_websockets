@@ -10,6 +10,11 @@ class Chart extends Component {
   render() {
     // console.log("favorites", this.props.favorites);
     // console.log('chart props', this.props)
+    // function precise(x) {
+    //   return Number.parseFloat(x).toPrecision(4);
+    // }
+
+// console.log(numObj.toPrecision()) 
     return (
       <div className="container">
         <Table size="sm" hover borderless>
@@ -21,7 +26,7 @@ class Chart extends Component {
               {this.props.changeOrVolume === "change" ? (
                 <th className='third-column'>Change</th>
               ) : (
-                <th lassName='third-column'>Volume</th>
+                <th className='third-column'>Volume</th>
               )}
             </tr>
           </thead>
@@ -68,6 +73,7 @@ class Chart extends Component {
                     </button>
                     {item.b}/{item.q}
                   </td>
+                  {/* {console.log(item.c, item.c.toPrecision())} */}
                   <td>{item.c}</td>
 
                   {this.props.changeOrVolume === "change" ? (
@@ -81,7 +87,7 @@ class Chart extends Component {
                       </td>
                     )
                   ) : (
-                    <td>{item.v}</td>
+                    <td className="third-column">{item.v}</td>
                   )}
                 </tr>
               </tbody>

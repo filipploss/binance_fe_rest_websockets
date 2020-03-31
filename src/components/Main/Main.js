@@ -1,44 +1,30 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { btcStoreUpdate, storeUpdateWebsocket, searchDataInit } from "../../actions";
+import { storeInit, storeUpdateWebsocket, searchDataInit } from "../../actions";
 import { dispatch } from "../../index";
+import Widget from "../Widget";
 
 class Main extends Component {
-  socket = new WebSocket(
-    "wss://stream.binance.com/stream?streams=!miniTicker@arr"
-  );
-
-  componentDidMount = async () => {
-    try {
-      const response = await fetch(`http://localhost:3001/`);
-      if (!response.ok) {
-        throw Error(response.statusText);
-      }
-      const json = await response.json();
-      const result = await json.data.filter(item => item.pm === "BTC");
-    //   console.log("!all data", json.data);
-    //   console.log("!result", result);
-      dispatch(btcStoreUpdate(result));
-      dispatch(searchDataInit(json.data))
-    } catch (error) {
-      console.log(error);
+  startWebsocket = () => {
+    if (this.socket) {
+      this.socket.close(1000, "Button clicked");
+      this.socket.onclose = event => {
+        console.log("[close] Websocket connection closed");
+      };
     }
 
-         console.log("! Props", this.props.data);
+    this.socket = new WebSocket(
+      "wss://stream.binance.com/stream?streams=!miniTicker@arr"
+    );
+
     this.socket.onopen = e => {
-    //   console.log("[open] Websocket connection open");
+      console.log("[open] Websocket connection open");
       this.socket.onmessage = event => {
         let result = JSON.parse(event.data);
-        // console.log("JSON", result);
-        // console.log(result.data);
-        // console.log("! Props", this.props.data);
-        // console.log("! result", result.data);
-
         let updatedData = this.props.data.map(item => {
           for (let index = 0; index < result.data.length; index++) {
             if (item.s === result.data[index].s) {
-            //   console.log(item.s, "!Updated");
               if (item.c < 1) {
                 item = {
                   ...item,
@@ -63,20 +49,45 @@ class Main extends Component {
           }
           return item;
         });
-        // console.log("updated data: ", updatedData);
         dispatch(storeUpdateWebsocket(updatedData));
       };
     };
   };
+
+  componentDidMount = async () => {
+    try {
+      const response = await fetch(`http://localhost:3001/`);
+      if (!response.ok) {
+        throw Error(response.statusText);
+      }
+      const json = await response.json();
+      const result = await json.data.filter(item => item.pm === "BTC");
+      //   console.log("!all data", json.data);
+      //   console.log("!result", result);
+      dispatch(storeInit(result));
+      dispatch(searchDataInit(json.data));
+    } catch (error) {
+      console.log(error);
+    }
+
+    this.startWebsocket();
+   
+  };
+  
   render() {
-      
-    return <></>;
+    return (
+      <>
+        <Widget startWebsocket={this.startWebsocket} />
+        {/* <button onClick={this.closeWebsocket}>Websocket close</button> */}
+      </>
+    );
   }
 }
 
 const mapStateToProps = ({ data, searchData }) => {
   return {
-    data, searchData
+    data,
+    searchData
   };
 };
 

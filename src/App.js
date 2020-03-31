@@ -6,8 +6,10 @@ import Widget from './components/Widget'
 function App() {
   return (
     <div className="App">
-     <Main/>
-     <Widget/>
+     <Main>
+     {/* <Widget/> */}
+     </Main>
+     
     </div>
   );
 }

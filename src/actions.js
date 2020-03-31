@@ -1,4 +1,4 @@
-const btcStoreUpdate = payload => ({ type: "BTC_STORE_UPDATE", payload });
+const storeInit = payload => ({ type: "STORE_INIT", payload });
 const assetStoreUpdate = payload => ({ type: "ASSET_STORE_UPDATE", payload });
 const storeUpdateWebsocket = payload => ({
   type: "STORE_UPDATE_WEBSOCKET",
@@ -25,7 +25,7 @@ const searchDataInit = payload => ({
 });
 
 export {
-  btcStoreUpdate,
+  storeInit,
   assetStoreUpdate,
   storeUpdateWebsocket,
   changeVolumeSelect,

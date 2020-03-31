@@ -8,7 +8,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "BTC_STORE_UPDATE":
+    case "STORE_INIT":
       return {
         ...state,
         data: action.payload,

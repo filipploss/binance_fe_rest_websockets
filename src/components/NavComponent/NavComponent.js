@@ -48,7 +48,7 @@ const NavComponent = props => {
           })
         // );
         result = res;
-        console.log("res", result);
+        // console.log("res", result);
       } else {
         result = await json.data.filter(item => item.q === asset);
       }
