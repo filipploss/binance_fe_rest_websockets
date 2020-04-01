@@ -90,9 +90,9 @@ class Main extends Component {
       <>
         {this.props.children}
         {this.state.websocketOpen ? (
-          <div>
+          <div className='button-websockets-container'>
             <Button
-              className="button"
+              className="button-websockets"
               color="secondary"
               size="sm"
               onClick={this.startWebsocket}
@@ -102,8 +102,8 @@ class Main extends Component {
             WebSocket connection open
           </div>
         ) : (
-          <div>
-            <Button className="button" color="secondary" disabled size="sm">
+          <div className='button-websockets-container'>
+            <Button className="button-websockets" color="secondary" disabled size="sm">
               Close Websocket
             </Button>
             WebSocket connection closed

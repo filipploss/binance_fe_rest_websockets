@@ -57,7 +57,7 @@ const NavComponent = props => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto navbar" navbar>
             <NavItem>
-              <NavLink href="#" onClick={() => assetFilter("FAV")}>
+              <NavLink href="#" className="nav-fav" onClick={() => assetFilter("FAV")}>
                 ★
               </NavLink>
             </NavItem>
@@ -70,7 +70,7 @@ const NavComponent = props => {
             <NavItem>
               <NavLink
                 href="#"
-                className="nav-link"
+                className="nav-link nav-bnb"
                 onClick={() => assetFilter("BNB")}
               >
                 BNB
@@ -79,7 +79,7 @@ const NavComponent = props => {
             <NavItem>
               <NavLink
                 href="#"
-                className="nav-link"
+                className="nav-link nav-btc"
                 onClick={() => assetFilter("BTC")}
               >
                 BTC
@@ -87,24 +87,24 @@ const NavComponent = props => {
             </NavItem>
             {/* PN (category of parent market) doesn't contain names of ALTS, that's why it's hardcored in the dropdown */}
             <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
+              <DropdownToggle nav caret className="nav-link nav-alts">
                 ALTS
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem
-                  className="nav-link"
+                  className="nav-link nav-xrp"
                   onClick={() => assetFilter("XRP")}
                 >
                   XRP
                 </DropdownItem>
                 <DropdownItem
-                  className="nav-link"
+                  className="nav-link nav-eth"
                   onClick={() => assetFilter("ETH")}
                 >
                   ETH
                 </DropdownItem>
                 <DropdownItem
-                  className="nav-link"
+                  className="nav-link nav-trx"
                   onClick={() => assetFilter("TRX")}
                 >
                   TRX
@@ -112,19 +112,19 @@ const NavComponent = props => {
               </DropdownMenu>
             </UncontrolledDropdown>
             <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret className="nav-link">
+              <DropdownToggle nav caret className="nav-link nav-usd">
                 USDⓈ
               </DropdownToggle>
               {/* PN (category of parent market) doesn't contain category of USD stable coins, that's why it's hardcored in the dropdown */}
               <DropdownMenu right>
                 <DropdownItem
-                  className="nav-link"
+                  className="nav-link nav-busd"
                   onClick={() => assetFilter("BUSD")}
                 >
                   BUSD
                 </DropdownItem>
                 <DropdownItem
-                  className="nav-link"
+                  className="nav-link nav-usdt"
                   onClick={() => assetFilter("USDT")}
                 >
                   USDT

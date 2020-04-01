@@ -8,7 +8,7 @@ const Widget = props => {
   return (
     <div>
       <div>
-        <h1>Market</h1>
+        <h1 className='Page-title'>Market</h1>
       </div>
       <NavComponent />
       <div>

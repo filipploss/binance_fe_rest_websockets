@@ -9,7 +9,7 @@ import "./Chart.css";
 class Chart extends Component {
   render() {
     return (
-      <div className="container">
+      <div className="chart-container">
         <Table size="sm" hover borderless>
           <thead>
             <tr>
@@ -31,8 +31,8 @@ class Chart extends Component {
               : (favStyle = "fav-button");
             return (
               <tbody key={index}>
-                <tr>
-                  <td>
+                <tr className='chart-row'>
+                  <td className='chart-row-contents'>
                     <button
                       className={favStyle}
                       onClick={() => {
