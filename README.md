@@ -2,10 +2,9 @@
 
 ## Available Scripts
 
-To start the app you need to run:<br />
-`npm install` to install all the dependencies<br />
-`node server/server.js` to run server<br />
-`npm start` to run React frontend<br />
+To start the app you need to run: `npm start`<br />
+It will install all the dependencies, run server and frontend.
+
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.<br />
 
