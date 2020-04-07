@@ -1,6 +1,5 @@
 ## Binance Market App
 
-## Available Scripts
 
 To start the app you need to run: `npm start`<br />
 It will install all the dependencies, run server and frontend.
