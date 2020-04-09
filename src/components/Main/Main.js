@@ -3,21 +3,20 @@ import { connect } from "react-redux";
 import { Button } from "reactstrap";
 
 import { storeUpdate, searchDataInit } from "../../actions";
-import { dispatch } from "../../index";
 import "./Main.css";
 
 class Main extends Component {
   state = {
-    websocketOpen: false
+    websocketOpen: false,
   };
 
   startWebsocket = () => {
     if (this.socket) {
       this.socket.close(1000, "Button clicked");
-      this.socket.onclose = event => {
-        this.setState(function(state, props) {
+      this.socket.onclose = (event) => {
+        this.setState(function (state, props) {
           return {
-            websocketOpen: false
+            websocketOpen: false,
           };
         });
         console.log("[close] Websocket connection close");
@@ -28,42 +27,42 @@ class Main extends Component {
       "wss://stream.binance.com/stream?streams=!miniTicker@arr"
     );
 
-    this.socket.onopen = e => {
-      this.setState(function(state, props) {
+    this.socket.onopen = (e) => {
+      this.setState(function (state, props) {
         return {
-          websocketOpen: true
+          websocketOpen: true,
         };
       });
       console.log("[open] Websocket connection open");
-      this.socket.onmessage = event => {
+      this.socket.onmessage = (event) => {
         let result = JSON.parse(event.data);
-        let updatedData = this.props.data.map(item => {
+        let updatedData = this.props.data.map((item) => {
           for (let index = 0; index < result.data.length; index++) {
             if (item.s === result.data[index].s) {
               if (item.c < 1) {
                 item = {
                   ...item,
                   c: Number(result.data[index].c).toFixed(7),
-                  v: Number(result.data[index].v).toFixed(2)
+                  v: Number(result.data[index].v).toFixed(2),
                 };
               } else if (Number.isInteger(item.c)) {
                 item = {
                   ...item,
                   c: Math.round(Number(result.data[index].c)),
-                  v: Number(result.data[index].v).toFixed(2)
+                  v: Number(result.data[index].v).toFixed(2),
                 };
               } else {
                 item = {
                   ...item,
                   c: Number(result.data[index].c).toFixed(2),
-                  v: Number(result.data[index].v).toFixed(2)
+                  v: Number(result.data[index].v).toFixed(2),
                 };
               }
             }
           }
           return item;
         });
-        dispatch(storeUpdate(updatedData));
+        this.props.storeUpdate(updatedData);
       };
     };
   };
@@ -75,9 +74,9 @@ class Main extends Component {
         throw Error(response.statusText);
       }
       const json = await response.json();
-      const result = await json.data.filter(item => item.pm === "BTC");
-      dispatch(storeUpdate(result));
-      dispatch(searchDataInit(json.data));
+      const result = await json.data.filter((item) => item.pm === "BTC");
+      this.props.storeUpdate(result);
+      this.props.searchDataInit(json.data);
     } catch (error) {
       console.log(error);
     }
@@ -90,7 +89,7 @@ class Main extends Component {
       <>
         {this.props.children}
         {this.state.websocketOpen ? (
-          <div className='button-websockets-container'>
+          <div className="button-websockets-container">
             <Button
               className="button-websockets"
               color="secondary"
@@ -102,8 +101,13 @@ class Main extends Component {
             WebSocket connection open
           </div>
         ) : (
-          <div className='button-websockets-container'>
-            <Button className="button-websockets" color="secondary" disabled size="sm">
+          <div className="button-websockets-container">
+            <Button
+              className="button-websockets"
+              color="secondary"
+              disabled
+              size="sm"
+            >
               Close Websocket
             </Button>
             WebSocket connection closed
@@ -117,8 +121,13 @@ class Main extends Component {
 const mapStateToProps = ({ data, searchData }) => {
   return {
     data,
-    searchData
+    searchData,
   };
 };
 
-export default connect(mapStateToProps)(Main);
+const mapDispatchToProps = {
+  storeUpdate,
+  searchDataInit,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

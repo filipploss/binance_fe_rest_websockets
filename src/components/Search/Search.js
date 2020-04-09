@@ -3,7 +3,6 @@ import { InputGroup, Input, FormGroup, Label } from "reactstrap";
 
 import "./Search.css";
 import { connect } from "react-redux";
-import { dispatch } from "../../index";
 import { changeVolumeSelect, storeUpdate } from "../../actions";
 
 class Search extends Component {
@@ -12,13 +11,13 @@ class Search extends Component {
       <div>
         <div className="search-group">
           <InputGroup
-            onChange={event => {
-              const result = this.props.searchData.filter(item =>
+            onChange={(event) => {
+              const result = this.props.searchData.filter((item) =>
                 item.s.includes(
                   event.target.value.toUpperCase().replace("/", "")
                 )
               );
-              dispatch(storeUpdate(result));
+              this.props.storeUpdate(result);
             }}
           >
             <Input className="input" placeholder="Search" />
@@ -31,7 +30,7 @@ class Search extends Component {
                   name="radio2"
                   defaultChecked
                   onChange={() => {
-                    dispatch(changeVolumeSelect("change"));
+                    this.props.changeVolumeSelect("change");
                   }}
                 />
                 Change
@@ -43,7 +42,7 @@ class Search extends Component {
                   type="radio"
                   name="radio2"
                   onChange={() => {
-                    dispatch(changeVolumeSelect("volume"));
+                    this.props.changeVolumeSelect("volume");
                   }}
                 />
                 Volume
@@ -59,8 +58,13 @@ class Search extends Component {
 const mapStateToProps = ({ data, searchData }) => {
   return {
     data,
-    searchData
+    searchData,
   };
 };
 
-export default connect(mapStateToProps)(Search);
+const mapDispatchToProps = {
+  storeUpdate,
+  changeVolumeSelect,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search);

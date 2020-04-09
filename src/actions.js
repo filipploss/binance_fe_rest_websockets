@@ -1,23 +1,18 @@
-const storeUpdate = payload => ({ type: "STORE_UPDATE", payload });
+const storeUpdate = (payload) => ({ type: "STORE_UPDATE", payload });
 
-const changeVolumeSelect = payload => ({
+const changeVolumeSelect = (payload) => ({
   type: "CHANGE_VOLUME_SELECT",
-  payload
+  payload,
 });
 
-const favButtonSelect = payload => ({
+const favButtonSelect = (payload) => ({
   type: "FAV_BUTTON_SELECT",
-  payload
+  payload,
 });
 
-const searchDataInit = payload => ({
+const searchDataInit = (payload) => ({
   type: "SEARCH_DATA_INIT",
-  payload
+  payload,
 });
 
-export {
-  storeUpdate,
-  changeVolumeSelect,
-  favButtonSelect,
-  searchDataInit
-};
+export { storeUpdate, changeVolumeSelect, favButtonSelect, searchDataInit };

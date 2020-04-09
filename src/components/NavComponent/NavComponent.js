@@ -44,6 +44,7 @@ const NavComponent = props => {
       } else {
         result = await json.data.filter(item => item.q === asset);
       }
+
       dispatch(storeUpdate(result));
     } catch (error) {
       console.log(error);
@@ -61,12 +62,12 @@ const NavComponent = props => {
                 ★
               </NavLink>
             </NavItem>
-            {/* Margin is not found in the API */}
+            {/* Margin is not found in the API
             <NavItem>
               <NavLink href="#" className="nav-link">
                 Margin
               </NavLink>
-            </NavItem>
+            </NavItem> */}
             <NavItem>
               <NavLink
                 href="#"

@@ -3,7 +3,7 @@ const initialState = {
   data: [],
   favorites: [],
   changeOrVolume: "change",
-  searchData: []
+  searchData: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -11,26 +11,26 @@ const reducer = (state = initialState, action) => {
     case "STORE_UPDATE":
       return {
         ...state,
-        data: action.payload,    
+        data: action.payload,
       };
 
     case "CHANGE_VOLUME_SELECT":
       return {
         ...state,
-        changeOrVolume: action.payload
+        changeOrVolume: action.payload,
       };
 
     case "FAV_BUTTON_SELECT":
       return {
         ...state,
-        favorites: action.payload
+        favorites: action.payload,
       };
 
-      case "SEARCH_DATA_INIT":
-        return {
-          ...state,
-          searchData: action.payload
-        };
+    case "SEARCH_DATA_INIT":
+      return {
+        ...state,
+        searchData: action.payload,
+      };
 
     default:
       return state;
