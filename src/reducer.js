@@ -8,24 +8,12 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "STORE_INIT":
+    case "STORE_UPDATE":
       return {
         ...state,
-        data: action.payload,
-        
+        data: action.payload,    
       };
 
-    case "ASSET_STORE_UPDATE":
-      return {
-        ...state,
-        data: action.payload
-      };
-
-    case "STORE_UPDATE_WEBSOCKET":
-      return {
-        ...state,
-        data: action.payload
-      };
     case "CHANGE_VOLUME_SELECT":
       return {
         ...state,
@@ -36,12 +24,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         favorites: action.payload
-      };
-
-    case "SEARCH_INPUT":
-      return {
-        ...state,
-        data: action.payload
       };
 
       case "SEARCH_DATA_INIT":

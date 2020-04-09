@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button } from "reactstrap";
 
-import { storeInit, storeUpdateWebsocket, searchDataInit } from "../../actions";
+import { storeUpdate, searchDataInit } from "../../actions";
 import { dispatch } from "../../index";
 import "./Main.css";
 
@@ -63,7 +63,7 @@ class Main extends Component {
           }
           return item;
         });
-        dispatch(storeUpdateWebsocket(updatedData));
+        dispatch(storeUpdate(updatedData));
       };
     };
   };
@@ -76,7 +76,7 @@ class Main extends Component {
       }
       const json = await response.json();
       const result = await json.data.filter(item => item.pm === "BTC");
-      dispatch(storeInit(result));
+      dispatch(storeUpdate(result));
       dispatch(searchDataInit(json.data));
     } catch (error) {
       console.log(error);

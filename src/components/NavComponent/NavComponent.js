@@ -14,7 +14,7 @@ import {
 
 import { connect } from "react-redux";
 import { dispatch } from "../../index";
-import { assetStoreUpdate } from "../../actions";
+import { storeUpdate } from "../../actions";
 import "./NavComponent.css";
 
 const NavComponent = props => {
@@ -44,7 +44,7 @@ const NavComponent = props => {
       } else {
         result = await json.data.filter(item => item.q === asset);
       }
-      dispatch(assetStoreUpdate(result));
+      dispatch(storeUpdate(result));
     } catch (error) {
       console.log(error);
     }

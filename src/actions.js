@@ -1,9 +1,5 @@
-const storeInit = payload => ({ type: "STORE_INIT", payload });
-const assetStoreUpdate = payload => ({ type: "ASSET_STORE_UPDATE", payload });
-const storeUpdateWebsocket = payload => ({
-  type: "STORE_UPDATE_WEBSOCKET",
-  payload
-});
+const storeUpdate = payload => ({ type: "STORE_UPDATE", payload });
+
 const changeVolumeSelect = payload => ({
   type: "CHANGE_VOLUME_SELECT",
   payload
@@ -14,22 +10,14 @@ const favButtonSelect = payload => ({
   payload
 });
 
-const searchInput = payload => ({
-  type: "SEARCH_INPUT",
-  payload
-});
-
 const searchDataInit = payload => ({
   type: "SEARCH_DATA_INIT",
   payload
 });
 
 export {
-  storeInit,
-  assetStoreUpdate,
-  storeUpdateWebsocket,
+  storeUpdate,
   changeVolumeSelect,
   favButtonSelect,
-  searchInput,
   searchDataInit
 };

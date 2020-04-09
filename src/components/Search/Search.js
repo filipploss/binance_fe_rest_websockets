@@ -4,7 +4,7 @@ import { InputGroup, Input, FormGroup, Label } from "reactstrap";
 import "./Search.css";
 import { connect } from "react-redux";
 import { dispatch } from "../../index";
-import { changeVolumeSelect, searchInput } from "../../actions";
+import { changeVolumeSelect, storeUpdate } from "../../actions";
 
 class Search extends Component {
   render() {
@@ -18,7 +18,7 @@ class Search extends Component {
                   event.target.value.toUpperCase().replace("/", "")
                 )
               );
-              dispatch(searchInput(result));
+              dispatch(storeUpdate(result));
             }}
           >
             <Input className="input" placeholder="Search" />
