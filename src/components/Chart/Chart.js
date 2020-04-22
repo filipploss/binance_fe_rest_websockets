@@ -23,14 +23,14 @@ class Chart extends Component {
             </tr>
           </thead>
 
-          {this.props.data.map((item, index) => {
+          {this.props.data.map((item) => {
             let favArray = this.props.favorites;
             let favStyle;
             favArray.find(i => i.s === item.s)
               ? (favStyle = "fav-button-checked")
               : (favStyle = "fav-button");
             return (
-              <tbody key={index}>
+              <tbody key={item.s}>
                 <tr className='chart-row'>
                   <td className='chart-row-contents'>
                     <button
