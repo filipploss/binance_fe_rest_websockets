@@ -10,19 +10,7 @@ class Main extends Component {
     websocketOpen: false,
   };
 
-  startWebsocket = () => {
-    if (this.socket) {
-      this.socket.close(1000, "Button clicked");
-      this.socket.onclose = (event) => {
-        this.setState(function (state, props) {
-          return {
-            websocketOpen: false,
-          };
-        });
-        console.log("[close] Websocket connection close");
-      };
-    }
-
+  openWebsocket = () => {
     this.socket = new WebSocket(
       "wss://stream.binance.com/stream?streams=!miniTicker@arr"
     );
@@ -67,6 +55,21 @@ class Main extends Component {
     };
   };
 
+  startWebsocket = () => {
+    if (this.state.websocketOpen) {
+      this.socket.close(1000, "Button clicked");
+      this.socket.onclose = (event) => {
+        this.setState({
+          websocketOpen: false,
+        });
+        console.log("[close] Websocket connection close");
+        this.openWebsocket();
+      };
+    } else {
+      this.openWebsocket();
+    }
+  };
+
   componentDidMount = async () => {
     try {
       const response = await fetch(`http://localhost:3001/`);
@@ -96,7 +99,7 @@ class Main extends Component {
               size="sm"
               onClick={this.startWebsocket}
             >
-              Close Websocket
+              Restart WebSocket
             </Button>
             WebSocket connection open
           </div>
@@ -108,7 +111,7 @@ class Main extends Component {
               disabled
               size="sm"
             >
-              Close Websocket
+              Restart WebSocket
             </Button>
             WebSocket connection closed
           </div>

@@ -55,9 +55,8 @@ class Search extends Component {
   }
 }
 
-const mapStateToProps = ({ data, searchData }) => {
+const mapStateToProps = ({ searchData }) => {
   return {
-    data,
     searchData,
   };
 };

@@ -1,26 +1,23 @@
 const express = require("express");
 const app = express();
 const fetch = require("node-fetch");
-const cors = require('cors');
+const cors = require("cors");
 
 app.use(cors());
-app.get("/", async function(req, res) {
-  
+app.get("/", async function (req, res) {
   fetch(
     "https://www.binance.com/exchange-api/v1/public/asset-service/product/get-products"
   )
-    .then(response => {
+    .then((response) => {
       console.log(response);
       return response.json();
     })
-    .then(data => {
+    .then((data) => {
       console.log(data);
       res.send(data);
     });
-
-  // res.send("Hello World!");
 });
 
-app.listen(3001, function() {
+app.listen(3001, function () {
   console.log("Example app listening on port 3001!");
 });
