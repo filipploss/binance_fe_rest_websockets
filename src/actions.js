@@ -1,14 +1,8 @@
+import action from "./index.js";
+
 const storeUpdate = (payload) => ({ type: "STORE_UPDATE", payload });
-
-const changeVolumeSelect = (payload) => ({
-  type: "CHANGE_VOLUME_SELECT",
-  payload,
-});
-
-const changeVolumeSelectChange = () => ({
-  type: "CHANGE_VOLUME_SELECT_CHANGE",
-});
-
+const searchSelectVolume = () => action("SEARCH_SELECT_VOLUME_WATCH");
+const searchSelectChange = () => action("SEARCH_SELECT_CHANGE_WATCH");
 const favButtonSelect = (payload) => ({
   type: "FAV_BUTTON_SELECT",
   payload,
@@ -19,4 +13,10 @@ const searchDataInit = (payload) => ({
   payload,
 });
 
-export { storeUpdate, changeVolumeSelect, changeVolumeSelectChange, favButtonSelect, searchDataInit };
+export {
+  storeUpdate,
+  searchSelectVolume,
+  searchSelectChange,
+  favButtonSelect,
+  searchDataInit,
+};

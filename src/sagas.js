@@ -1,23 +1,21 @@
 import { put, takeEvery, all } from "redux-saga/effects";
 
-export function* changeVolumeSelectChange() {
-  yield put({ type: "CHANGE_VOLUME_SELECT_CHANGE"});
+export function* searchSelectChange() {
+  yield put({ type: "SEARCH_SELECT_CHANGE" });
 }
 
-export function* watchChangeVolumeSelectChange() {
-    console.log('!!!!!')
-  yield takeEvery("CHANGE_VOLUME_SELECT_CHANGE", changeVolumeSelectChange);
+export function* watchSearchSelectChange() {
+  yield takeEvery("SEARCH_SELECT_CHANGE_WATCH", searchSelectChange);
 }
 
-
-export function* helloSaga() {
-  console.log("Hello Sagas!");
+export function* searchSelectVolume() {
+  yield put({ type: "SEARCH_SELECT_VOLUME" });
 }
 
+export function* watchSearchSelectVolume() {
+  yield takeEvery("SEARCH_SELECT_VOLUME_WATCH", searchSelectVolume);
+}
 
 export default function* rootSaga() {
-    yield all([
-      helloSaga(),
-      watchChangeVolumeSelectChange()
-    ])
-  }
+  yield all([watchSearchSelectChange(), watchSearchSelectVolume()]);
+}

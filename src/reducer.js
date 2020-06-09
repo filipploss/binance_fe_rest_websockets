@@ -8,16 +8,21 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "STORE_UPDATE_STORE":
+    case "STORE_UPDATE":
       return {
         ...state,
         data: action.payload,
       };
 
-    case "CHANGE_VOLUME_SELECT":
+      case "SEARCH_SELECT_VOLUME":
+        return {
+          ...state,
+          changeOrVolume: "volume",
+        }
+    case "SEARCH_SELECT_CHANGE":
       return {
         ...state,
-        changeOrVolume: action.payload,
+        changeOrVolume: "change",
       };
 
     case "FAV_BUTTON_SELECT":

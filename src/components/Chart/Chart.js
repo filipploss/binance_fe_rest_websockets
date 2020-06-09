@@ -8,6 +8,7 @@ import "./Chart.css";
 
 class Chart extends Component {
   render() {
+    // console.log(this.props)
     return (
       <div className="chart-container">
         <Table size="sm" hover borderless>
@@ -82,7 +83,10 @@ class Chart extends Component {
                 </tr>
               </tbody>
             );
-          })}
+          }
+          
+          
+          )}
         </Table>
       </div>
     );

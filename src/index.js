@@ -6,16 +6,17 @@ import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { helloSaga } from "./sagas";
+import rootSaga from "./sagas";
 import "./index.css";
 import App from "./App";
 import reducer from "./reducer";
 
 const sagaMiddleware = createSagaMiddleware();
 export const store = createStore(reducer, applyMiddleware(sagaMiddleware));
-sagaMiddleware.run(helloSaga)
 export const { dispatch } = store;
+const action = (type) => store.dispatch({ type });
 
+sagaMiddleware.run(rootSaga);
 ReactDOM.render(
   <Provider store={store}>
     <App />
@@ -23,3 +24,5 @@ ReactDOM.render(
 
   document.getElementById("root")
 );
+
+export default action;
