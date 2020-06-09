@@ -8,7 +8,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "STORE_UPDATE":
+    case "STORE_UPDATE_STORE":
       return {
         ...state,
         data: action.payload,

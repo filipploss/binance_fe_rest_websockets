@@ -5,6 +5,10 @@ const changeVolumeSelect = (payload) => ({
   payload,
 });
 
+const changeVolumeSelectChange = () => ({
+  type: "CHANGE_VOLUME_SELECT_CHANGE",
+});
+
 const favButtonSelect = (payload) => ({
   type: "FAV_BUTTON_SELECT",
   payload,
@@ -15,4 +19,4 @@ const searchDataInit = (payload) => ({
   payload,
 });
 
-export { storeUpdate, changeVolumeSelect, favButtonSelect, searchDataInit };
+export { storeUpdate, changeVolumeSelect, changeVolumeSelectChange, favButtonSelect, searchDataInit };

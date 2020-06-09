@@ -3,7 +3,7 @@ import { InputGroup, Input, FormGroup, Label } from "reactstrap";
 
 import "./Search.css";
 import { connect } from "react-redux";
-import { changeVolumeSelect, storeUpdate } from "../../actions";
+import { changeVolumeSelect, changeVolumeSelectChange, storeUpdate } from "../../actions";
 
 class Search extends Component {
   render() {
@@ -30,7 +30,7 @@ class Search extends Component {
                   name="radio2"
                   defaultChecked
                   onChange={() => {
-                    this.props.changeVolumeSelect("change");
+                    this.props.changeVolumeSelectChange();
                   }}
                 />
                 Change
@@ -64,6 +64,7 @@ const mapStateToProps = ({ searchData }) => {
 const mapDispatchToProps = {
   storeUpdate,
   changeVolumeSelect,
+  changeVolumeSelectChange
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);
